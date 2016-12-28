@@ -7,6 +7,7 @@ const spawn = require('child_process').spawn;
 const path = require('path');
 const fs = require('fs');
 const opn = require('opn');
+const os = require('os');
 
 const getDirectories = p => fs.readdirSync(p).filter(f => fs.statSync(p + '/' + f).isDirectory());
 let startCmd;
@@ -174,7 +175,12 @@ const startServer = () => {
 
 const stopServer = () => {
     if (startCmd) {
-        startCmd.kill('SIGINT'); //Does't work on windows find an alternative
+        if (os.platform() == 'win32') {
+            spawn("taskkill", ["/pid", startCmd.pid, '/f', '/t']);
+        } 
+        else {
+            startCmd.kill('SIGINT');
+        }
     } else {
         console.log('No process started');
     }
