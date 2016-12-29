@@ -1,6 +1,6 @@
 # hugofy README
 
-Hugofy is a plugin for Sublime Text 3 to make life easier to use [Hugo static site generator](http://gohugo.io)
+Hugofy is a plugin for Visual Studio Code to make life easier to use [Hugo static site generator](http://gohugo.io)
 
 
 ## Features
@@ -15,11 +15,12 @@ Use command pallete ```Ctrl+Shift+P``` and type Hugofy
 
 ## Extension Settings
 
-
 ## Known Issues
-Server stop does not work on windows
 
 ## Release Notes
+
+## 0.0.2
+[Fix] Server Stop works on windows
 
 ### 0.0.1
 
