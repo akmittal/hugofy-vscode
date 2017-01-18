@@ -63,7 +63,7 @@ const build = () => {
     buildCmd.on('close', (code) => {
         console.log(`code ${code}`);
         if (code !== 0) {
-            vscode.window.showErrorMessage('Error getting rugo version, Make sure hugo is available in path.');
+            vscode.window.showErrorMessage('Error getting hugo version, Make sure hugo is available in path.');
         }
     });
 
