@@ -179,7 +179,7 @@ const stopServer = () => {
             spawn("taskkill", ["/pid", startCmd.pid, '/f', '/t']);
         } 
         else {
-            startCmd.kill('SIGINT');
+            startCmd.kill('SIGTERM');
         }
     } else {
         console.log('No process started');
