@@ -150,7 +150,7 @@ const startServer = () => {
     if (defaultTheme) {
         startCmd = spawn('hugo', ['server', `--theme=${defaultTheme}`, `-s="${vscode.workspace.rootPath}"`, '--buildDrafts', '--watch', '--port=9081'], { shell: true });
     } else {
-        vscode.window.showInformationMessage('Deafault theme not set. Please set one');
+        vscode.window.showInformationMessage('Default theme not set. Please set one');
         setTheme();
     }
 
