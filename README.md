@@ -19,6 +19,10 @@ Use command pallete ```Ctrl+Shift+P``` and type Hugofy
 
 ## Release Notes
 
+## 0.1.0
+
+[Fix] Fixed start server error
+
 ## 0.0.2
 
 [Fix] Server Stop works on windows
