@@ -152,6 +152,7 @@ const startServer = () => {
     } else {
         vscode.window.showInformationMessage('Default theme not set. Please set one');
         setTheme();
+        return;
     }
 
     startCmd.stdout.on('data', (data) => {
@@ -177,7 +178,7 @@ const stopServer = () => {
     if (startCmd) {
         if (os.platform() == 'win32') {
             spawn("taskkill", ["/pid", startCmd.pid, '/f', '/t']);
-        } 
+        }
         else {
             startCmd.kill('SIGTERM');
         }
