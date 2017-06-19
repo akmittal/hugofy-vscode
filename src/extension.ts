@@ -3,16 +3,17 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import { getThemesList, getThemeGitURL } from './getThemesList';
-const spawn = require('child_process').spawn;
-const path = require('path');
-const fs = require('fs');
-const opn = require('opn');
-const os = require('os');
+import * as child from 'child_process';
+import * as path from 'path';
+import * as fs from 'fs';
+import * as opn from 'opn';
+import * as os from 'os';
+
 
 const getDirectories = p => fs.readdirSync(p).filter(f => fs.statSync(p + '/' + f).isDirectory());
 let startCmd;
 const getVersion = () => {
-    const version = spawn('hugo', ['version'], { shell: true });
+    const version = child.spawn('hugo', ['version'], { shell: true });
     version.stdout.on('data', (data) => {
         vscode.window.showInformationMessage(data.toString());
     });
@@ -29,7 +30,7 @@ const getVersion = () => {
 };
 const newSite = () => {
     if (vscode.workspace.rootPath) {
-        const newSiteCmd = spawn('hugo', ['new', 'site', `"${vscode.workspace.rootPath}"`], { shell: true });
+        const newSiteCmd = child.spawn('hugo', ['new', 'site', `"${vscode.workspace.rootPath}"`], { shell: true });
         newSiteCmd.stdout.on('data', (data) => {
             console.log(`stdout: ${data}`);
         });
@@ -49,7 +50,7 @@ const newSite = () => {
 };
 
 const build = () => {
-    const buildCmd = spawn('hugo', ['--buildDrafts', `-s="${vscode.workspace.rootPath}"`], { shell: true });
+    const buildCmd = child.spawn('hugo', ['--buildDrafts', `-s="${vscode.workspace.rootPath}"`], { shell: true });
     buildCmd.stdout.on('data', (data) => {
         console.log(`std ${data}`);
         vscode.window.showInformationMessage(data.toString());
@@ -76,7 +77,7 @@ const downloadTheme = () => {
             const themeData = themeList.find(themeItem => themeItem.name === selection);
             getThemeGitURL(themeData).then(gitURL => {
                 const themePath = path.join(vscode.workspace.rootPath, 'themes', themeData.name);
-                const downloadThemeCmd = spawn('git', ['clone', gitURL, `"${themePath}"`], { shell: true });
+                const downloadThemeCmd = child.spawn('git', ['clone', gitURL, `"${themePath}"`], { shell: true });
                 downloadThemeCmd.stdout.on('data', (data) => {
                     console.log(`stdout: ${data}`);
                 });
@@ -102,9 +103,9 @@ const newPost = () => {
     vscode.window.showInputBox({ placeHolder: 'Enter filename' }).then((filename) => {
         const newPostPath = path.join(vscode.workspace.rootPath, 'content', 'post', filename);
         const postPath = 'post' + path.sep + filename;
-        const newPostCmd = spawn('hugo', ['new', postPath, `-s="${vscode.workspace.rootPath}"`], { shell: true });
+        const newPostCmd = child.spawn('hugo', ['new', postPath, `-s="${vscode.workspace.rootPath}"`], { shell: true });
         newPostCmd.stdout.on('data', (data) => {
-            vscode.window.showInformationMessage(data);
+            vscode.window.showInformationMessage(data.toString());
         });
         newPostCmd.stderr.on('data', (data) => {
             console.log(`stderr: ${data}`);
@@ -148,7 +149,7 @@ const setTheme = () => {
 const startServer = () => {
     const defaultTheme = getDefaultTheme();
     if (defaultTheme) {
-        startCmd = spawn('hugo', ['server', `--theme=${defaultTheme}`, `-s="${vscode.workspace.rootPath}"`, '--buildDrafts', '--watch', '--port=9081'], { shell: true });
+        startCmd = child.spawn('hugo', ['server', `--theme=${defaultTheme}`, `-s="${vscode.workspace.rootPath}"`, '--buildDrafts', '--watch', '--port=9081'], { shell: true });
     } else {
         vscode.window.showInformationMessage('Default theme not set. Please set one');
         setTheme();
@@ -157,7 +158,7 @@ const startServer = () => {
 
     startCmd.stdout.on('data', (data) => {
         if (data.indexOf('building sites') > -1) {
-            opn('http://localhost:9081');
+            opn('http://localhost:9081', { wait: false });
         }
 
         console.log(`stdout: ${data}`);
@@ -176,10 +177,9 @@ const startServer = () => {
 
 const stopServer = () => {
     if (startCmd) {
-        if (os.platform() == 'win32') {
-            spawn("taskkill", ["/pid", startCmd.pid, '/f', '/t']);
-        }
-        else {
+        if (os.platform() === 'win32') {
+            child.spawn('taskkill', ['/pid', startCmd.pid, '/f', '/t']);
+        } else {
             startCmd.kill('SIGTERM');
         }
     } else {

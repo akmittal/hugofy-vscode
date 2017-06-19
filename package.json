@@ -16,31 +16,40 @@
   ],
   "main": "./out/src/extension",
   "contributes": {
-    "commands": [{
-      "command": "hugofy.build",
-      "title": "Hugofy: Build"
-    }, {
-      "command": "hugofy.getVersion",
-      "title": "Hugofy: Version"
-    }, {
-      "command": "hugofy.downloadTheme",
-      "title": "Hugofy: Download Themes"
-    }, {
-      "command": "hugofy.newPost",
-      "title": "Hugofy: New Post"
-    }, {
-      "command": "hugofy.newSite",
-      "title": "Hugofy: New Site"
-    }, {
-      "command": "hugofy.setTheme",
-      "title": "Hugofy: Set Theme"
-    }, {
-      "command": "hugofy.startServer",
-      "title": "Hugofy: Start Server"
-    }, {
-      "command": "hugofy.stopServer",
-      "title": "Hugofy: Stop Server"
-    }]
+    "commands": [
+      {
+        "command": "hugofy.build",
+        "title": "Hugofy: Build"
+      },
+      {
+        "command": "hugofy.getVersion",
+        "title": "Hugofy: Version"
+      },
+      {
+        "command": "hugofy.downloadTheme",
+        "title": "Hugofy: Download Themes"
+      },
+      {
+        "command": "hugofy.newPost",
+        "title": "Hugofy: New Post"
+      },
+      {
+        "command": "hugofy.newSite",
+        "title": "Hugofy: New Site"
+      },
+      {
+        "command": "hugofy.setTheme",
+        "title": "Hugofy: Set Theme"
+      },
+      {
+        "command": "hugofy.startServer",
+        "title": "Hugofy: Start Server"
+      },
+      {
+        "command": "hugofy.stopServer",
+        "title": "Hugofy: Stop Server"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
@@ -51,7 +60,9 @@
   "devDependencies": {
     "@types/mocha": "^2.2.34",
     "@types/node": "^6.0.53",
+    "@types/request": "0.0.44",
     "mocha": "^2.3.3",
+    "request": "^2.81.0",
     "tslint": "^4.2.0",
     "typescript": "^2.1.0",
     "vscode": "^1.0.3"
