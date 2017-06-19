@@ -2,7 +2,7 @@
   "name": "hugofy",
   "displayName": "hugofy",
   "description": "Make your life easier to use Hugo static site generator in vscode",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "publisher": "akmittal",
   "icon": "hugofy.png",
   "engines": {
