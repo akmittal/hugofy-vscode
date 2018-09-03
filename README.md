@@ -10,7 +10,7 @@ Hugofy is a plugin for Visual Studio Code to make life easier to use [Hugo stati
 4. Run and stop server
 5. Download available hugo themes.
 
-#Usage
+## Usage
 Use command pallete ```Ctrl+Shift+P``` and type Hugofy
 
 ## Extension Settings
