@@ -60,7 +60,9 @@
   "devDependencies": {
     "@types/mocha": "^2.2.34",
     "@types/node": "^6.0.53",
+    "@types/request": "0.0.44",
     "mocha": "^2.3.3",
+    "request": "^2.81.0",
     "tslint": "^4.2.0",
     "typescript": "^2.1.0",
     "vscode": "^1.0.3"
