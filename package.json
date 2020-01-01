@@ -2,7 +2,7 @@
   "name": "hugofy",
   "displayName": "hugofy",
   "description": "Make your life easier to use Hugo static site generator in vscode",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "akmittal",
   "icon": "hugofy.png",
   "engines": {
@@ -59,11 +59,11 @@
   },
   "devDependencies": {
     "@types/mocha": "^2.2.34",
-    "@types/node": "^6.0.53",
-    "mocha": "^6.0.0",
+    "@types/node": "^6.14.9",
+    "mocha": "^6.2.2",
     "tslint": "^4.2.0",
     "typescript": "^2.1.0",
-    "vscode": "^1.1.33"
+    "vscode": "^1.1.36"
   },
   "dependencies": {
     "opn": "^4.0.2"
